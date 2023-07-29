@@ -34,7 +34,7 @@ if(isset($_POST['registration']))
 	}
 	else
 	{
-		mysqli_query($config,"INSERT INTO userdetails(	username, useremail, usercontact) VALUES('$username','$useremail','$usercontact')");
+		mysqli_query($config,"INSERT INTO userdetails(username, useremail, usercontact) VALUES('$username','$useremail','$usercontact')");
 
 		echo "<div class='alert alert-info alert-dismissible fade show bottomshortHeight' role='alert'>";
 		echo "Dear <strong> ".gethostname().".</strong> We have successfully registered the user to the portal";
@@ -45,11 +45,6 @@ if(isset($_POST['registration']))
 }
 
 ?>
-
-<div class="container topshortHeight bottomshortHeight">
-<a href="view_all_users.php" class="btn btn-success float-end">View all Data</a>
-</div>
-
 
 <div class="container">
 <div class="row">
