@@ -65,9 +65,9 @@
 <?php 
 
 $hostname = 'localhost';
-$username = 'root';
-$password = 'Admin1234#@';
-$dbname = 'code_tutorials';
+$username = 'u445536153_administrator';
+$password = 'Learning2023#@';
+$dbname = 'u445536153_phptutorials';
 
 $config = mysqli_connect($hostname,$username,$password,$dbname);
 
