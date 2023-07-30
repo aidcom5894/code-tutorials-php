@@ -75,14 +75,18 @@ if(isset($_POST['deleteUser']))
 	$username = $_POST['username'];
 	$useremail = $_POST['useremail'];
 	$usercontact = $_POST['usercontact'];
+	$userpassword = "Admin1234#@";
+	$profileStatus = "Terminated";
 	$onboardingDate = $_POST['registrationDate'];
 	$recoveryDate = "To be Updated on Recovery";
+	$recovery_status = "Recovery Pending";
+	$activationCode = "activate_user";
 
 	mysqli_query($config,"DELETE FROM userdetails WHERE id='$id'");
 
 	echo "<script>alert('Data Deleted Successfully');window.location.href='view_all_users.php';</script>";
 
-	mysqli_query($config,"INSERT INTO recovery_db(username,useremail,usercontact,onboarding_date,recovery_date) VALUES ('$username','$useremail','$usercontact','$onboardingDate','$recoveryDate')");
+	mysqli_query($config,"INSERT INTO recovery_db(username,useremail,usercontact,user_password,profile_status,onboarding_date,recovery_date,recovery_status,activation_code) VALUES ('$username','$useremail','$usercontact','$userpassword','$profileStatus','$onboardingDate','$recoveryDate','$recovery_status','$activationCode')");
 }
 
 ?>

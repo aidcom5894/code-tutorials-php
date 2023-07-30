@@ -13,6 +13,8 @@ if(isset($_POST['registration']))
 	$username = $_POST['username'];
 	$useremail = $_POST['useremail'];
 	$usercontact = $_POST['usercontact'];
+	$userpassword = "Only for Premium Users";
+	$profileStatus = "General Account";
 
 	$checkEmail = mysqli_query($config,"SELECT useremail FROM userdetails WHERE useremail='$useremail'");
 
@@ -21,20 +23,20 @@ if(isset($_POST['registration']))
 	if(mysqli_num_rows($checkEmail)>0)
 	{
 		echo "<div class='alert alert-danger alert-dismissible fade show bottomshortHeight' role='alert'>";
-		echo "Dear <strong> ".gethostname().".</strong>  An Email with similar address already exist. Please use another Email";
+		echo "Dear <strong> ".gethostbyaddr($_SERVER['REMOTE_ADDR']).".</strong>  An Email with similar address already exist. Please use another Email";
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 		echo "</div>";
 	}
 	else if(mysqli_num_rows($checkContact)>0)
 	{
 		echo "<div class='alert alert-danger alert-dismissible fade show bottomshortHeight' role='alert'>";
-		echo "Dear <strong> ".gethostname().".</strong> The contact number provided by you was registered against another user. Please provide another Phone Number";
+		echo "Dear <strong> ".gethostbyaddr($_SERVER['REMOTE_ADDR']).".</strong> The contact number provided by you was registered against another user. Please provide another Phone Number";
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 		echo "</div>";
 	}
 	else
 	{
-		mysqli_query($config,"INSERT INTO userdetails(username, useremail, usercontact) VALUES('$username','$useremail','$usercontact')");
+		mysqli_query($config,"INSERT INTO userdetails(username, useremail, usercontact, user_password, profile_status) VALUES('$username','$useremail','$usercontact','$userpassword','$profileStatus')");
 
 		echo "<div class='alert alert-info alert-dismissible fade show bottomshortHeight' role='alert'>";
 		echo "Dear <strong> ".gethostname().".</strong> We have successfully registered the user to the portal";
@@ -82,15 +84,24 @@ if(isset($_POST['registration']))
 <button type="submit" class="btn btn-primary float-end" name="registration">Register a User</button>
 </form>
 
-
 </fieldset>
 
 </div>
 
-
 </div>
 </div>
 
-
-
 </div>
+
+
+
+<!-- section for quicklinks starts here -->
+<div class="container bottomshortHeight topshortHeight">
+  <div class="row">
+    <div class="col-sm-3"><a href="view_all_users.php" class="btn btn-success">View Registered Users</a></div>
+    <div class="col-sm-3"><a href="general_users.php" class="btn btn-success">General User Login</a></div>
+    <div class="col-sm-3"><a href="premium_signup.php" class="btn btn-success">Premium Signup</a></div>
+    <div class="col-sm-3"><a href="recoverable_users.php" class="btn btn-success">View Recoverable Data</a></div>
+  </div>
+</div>
+<!-- section for quicklinks ends here -->
