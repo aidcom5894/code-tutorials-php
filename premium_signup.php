@@ -18,25 +18,10 @@ if(isset($_POST['premiumMembership']))
 
 	$recoveryStatus = "Account Recovered";
 
-	$matchExistingEmail = mysqli_query($config,"SELECT useremail FROM recovery_db WHERE useremail='$userEmail'");
+	$matchCredentials = mysqli_query($config,"SELECT useremail,activation_code,user_password FROM recovery_db WHERE useremail='$userEmail'");
 
-	$matchActivationCode = mysqli_query($config,"SELECT activation_code FROM recovery_db WHERE activation_code='$userActivationCode'");
-
-	$matchPassword = mysqli_query($config,"SELECT user_password FROM recovery_db WHERE user_password='$profilePassword'");
-
-	if(mysqli_num_rows($matchExistingEmail)<0)
-	{
-		echo "<script>alert('No Terminated Account Found')</script>";
-	}
-	else if(mysqli_num_rows($userActivationCode)<0)
-	{
-		echo "<script>alert('This Activation Code does not match with the Admin Code.')</script>";
-	}
-	else if(mysqli_num_rows($userActivationCode)<0)
-	{
-		echo "<script>alert('The Password Provided by your does not match with the profile Password.')</script>";
-	}
-	else
+	
+	if(mysqli_num_rows($matchCredentials)>0)
 	{
 		mysqli_query($config,"UPDATE recovery_db SET profile_status='Active',recovery_date='$recoveryDate',recovery_status='$recoveryStatus' WHERE useremail='$userEmail'");
 
@@ -44,6 +29,10 @@ if(isset($_POST['premiumMembership']))
 		echo "Dear <strong> ".gethostname().".</strong> The terminated user is now successfully activated and can login through their credentials to access the Dashboard.";
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 		echo "</div>";
+	}
+	else
+	{
+		echo "<script>alert('No Data Found to be recovered')</script>";
 	}
 
 

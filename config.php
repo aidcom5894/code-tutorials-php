@@ -30,6 +30,7 @@ $username = 'u445536153_administrator';
 $password = 'Learning2023#@';
 $dbname = 'u445536153_phptutorials';
 
+
 $config = mysqli_connect($hostname,$username,$password,$dbname);
 
 		if(!$config)
