@@ -31,6 +31,15 @@ $password = 'RobinR2204#@';
 $dbname = 'u445536153_bcaexam';
 
 
+// $hostname = 'localhost';
+// $username = 'root';
+// $password = 'Admin1234#@';
+// $dbname = 'code_tutorials';
+
+
+
+
+
 $config = mysqli_connect($hostname,$username,$password,$dbname);
 
 		if(!$config)
