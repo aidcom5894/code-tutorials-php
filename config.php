@@ -26,9 +26,9 @@
 <?php 
 
 $hostname = 'localhost';
-$username = 'u445536153_administrator';
-$password = 'Learning2023#@';
-$dbname = 'u445536153_phptutorials';
+$username = 'u445536153_semesterexam';
+$password = 'RobinR2204#@';
+$dbname = 'u445536153_bcaexam';
 
 
 $config = mysqli_connect($hostname,$username,$password,$dbname);
